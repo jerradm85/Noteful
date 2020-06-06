@@ -1,0 +1,11 @@
+.goBack {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    justify-content: center;
+}
+
+.backButton {
+    width: 75px;
+    height: 25px;
+}

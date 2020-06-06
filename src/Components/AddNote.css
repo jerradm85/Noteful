@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.addNote {
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+}
