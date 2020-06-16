@@ -20,3 +20,10 @@
     font-size: 18px;
     text-decoration: none;
 }
+
+.addNote {
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
