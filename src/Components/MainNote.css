@@ -12,6 +12,7 @@ ul {
 }
 
 .delbutton {
+   cursor: pointer;
    margin-top: 10px;
    width: 75px;
    height: 30px;

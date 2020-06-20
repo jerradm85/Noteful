@@ -1,5 +1,6 @@
 import React from 'react';
 import './MainNote.css';
+import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import NotefulContext from '../NotefulContext'
 
@@ -10,14 +11,13 @@ class MainNote extends React.Component {
     }
 
     removeNote = (note) => {
-        console.log(note)
-
-        fetch(`http://localhost:9090/notes/${note}`,{
+        const deathNote = note;
+        fetch(`http://localhost:9090/notes/${deathNote}`,{
             method:"DELETE"
         })
         .then(() => {
             this.props.history.push("/")
-            this.context.deleteNote(note);
+            this.context.deleteNote(deathNote);
         })
     }
 
@@ -26,7 +26,7 @@ class MainNote extends React.Component {
             <NotefulContext.Consumer>
                 { (context) => (
                     <ul>
-                    <Link to='/addnote' className="addNote">Add Note</Link>
+                    <Link to='/addnote' className="addNote">Create new note</Link>
                     {context.notes.filter(note => {
                         if(this.props.match.params.folderId) {
                             return (note.folderId === this.props.match.params.folderId)
@@ -46,6 +46,12 @@ class MainNote extends React.Component {
             </NotefulContext.Consumer>
         )
     }
+}
+
+MainNote.propTypes = {
+    history: propTypes.any,
+    match: propTypes.any,
+    params: propTypes.any,
 }
 
 export default MainNote;

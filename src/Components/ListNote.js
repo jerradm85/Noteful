@@ -1,5 +1,6 @@
 import React from 'react'
 import './ListNote.css'
+import propTypes from 'prop-types'
 import NotefulContext from '../NotefulContext'
 
 class ListNote extends React.Component {
@@ -8,7 +9,7 @@ class ListNote extends React.Component {
     findNote(notes) {
         const foundNote = notes.find((note) => {
             if (this.props.match.params.noteId) {
-                return (note.id === this.props.match.params.noteId)
+                return (note.id === this.props.match.params.noteId);
             }
         }) || {}
         return (
@@ -27,8 +28,8 @@ class ListNote extends React.Component {
             method:"DELETE"
         })
         .then(() => {
-            this.props.history.push("/")
             this.context.deleteNote(note);
+            this.props.history.push("/");
         })
     }
 
@@ -49,6 +50,12 @@ class ListNote extends React.Component {
         )
     }
 
+}
+
+ListNote.propTypes = {
+    history: propTypes.any,
+    match: propTypes.any,
+    params: propTypes.any,
 }
 
 export default ListNote;

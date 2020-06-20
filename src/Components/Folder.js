@@ -8,13 +8,13 @@ function Folder() {
         <NotefulContext.Consumer>
             {(context) => {
                 return (
-                    <div className="Section">
+                    <section className="Section">
                         {context.folders.map((folder, idx) => (
                             <div className="Folder" key={idx}>
                                 <NavLink className="navLink" to={`/folder/${folder.id}`}>{folder.name}</NavLink>
                             </div>
                         ))}
-                    </div>
+                    </section>
                 )
             }}
         </NotefulContext.Consumer>
