@@ -13,3 +13,7 @@
     width: 75px;
     height: 25px;
 }
+
+.folderError {
+    color: red;
+}

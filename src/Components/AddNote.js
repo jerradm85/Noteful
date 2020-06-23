@@ -4,14 +4,34 @@ import propTypes from 'prop-types'
 import NotefulContext from '../NotefulContext'
 
 class AddNote extends React.Component {
+    state = {
+        message: ""
+    }
     static contextType = NotefulContext
+
+    validateName(name) {
+        if (!name || name.trim() === "") {
+            this.setState({
+                message: <p className="noteError">Note must have a name.</p>
+            })
+            return null;
+        } 
+        return name;
+    }
 
     handleSubmit = e => {
         e.preventDefault()
-        const name = e.target.name.value;
+        const name = this.validateName(e.target.name.value);
         const folderId = e.target.folderId.value
-        const content = e.target.content.value
+        const content = e.target.content.value;
         const note = { name, folderId, content }
+
+        if(!name) {
+            this.setState({
+                message: ""
+            })
+            return
+        }
 
         fetch(`http://localhost:9090/notes`, {
             method: "POST",
@@ -43,6 +63,7 @@ class AddNote extends React.Component {
                                 <div className="name">
                                     <label>Name: </label>
                                     <input name="name" placeholder="Cats"></input>
+                                    {this.state.message}
                                 </div>
                                 <div>
                                     <label>Folder: </label>

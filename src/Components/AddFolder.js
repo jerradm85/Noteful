@@ -11,11 +11,11 @@ class AddFolder extends React.Component {
     validateName(name) {
         if (!name || name.trim() === "") {
            this.setState({
-               message: "Folder must have a name."
+               message: <p className="folderError">Folder must have a name.</p>
            })
-           return false;
+           return null;
         }
-        return true;
+        return name;
     }
 
     handleSubmit = (e) => {
