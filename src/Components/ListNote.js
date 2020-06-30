@@ -1,5 +1,6 @@
 import React from 'react'
 import './ListNote.css'
+import moment from 'moment';
 import propTypes from 'prop-types'
 import NotefulContext from '../NotefulContext'
 
@@ -15,7 +16,7 @@ class ListNote extends React.Component {
         return (
             <li>
                 <h2>{foundNote.name}</h2>
-                <h3>{foundNote.modified}</h3>
+                <h3>{`Last Modified: ${moment(foundNote.modified).format('MMMM Do YYYY, h:mm:ss a')}`}</h3>
                 <p className="p">{foundNote.content}</p>
             </li>
         )

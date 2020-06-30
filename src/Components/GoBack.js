@@ -27,7 +27,7 @@ class GoBack extends React.Component {
                             <NavLink
                                 to={`/folder/${folder.id}`}
                                 className="backButton">
-                                {`${folder.name} folder`}
+                                {`Back to ${folder.name} folder`}
                             </NavLink>
                         </div>
                     )

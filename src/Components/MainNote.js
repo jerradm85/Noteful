@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import './MainNote.css';
 import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
@@ -36,7 +37,7 @@ class MainNote extends React.Component {
                             <li>
                                 <Link to={`/note/${note.id}`}>{`${note.name}`}</Link>
                                 {' - '}
-                                {`Last Modified: ${note.modified}`}
+                                {`Last Modified: ${moment(note.modified).format('MMMM Do YYYY, h:mm:ss a')}`}
                             </li>
                             <button className="delbutton" onClick={() => this.removeNote(note.id)}>Delete</button>
                         </div>
