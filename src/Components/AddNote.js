@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import './AddNote.css'
 import propTypes from 'prop-types'
 import NotefulContext from '../NotefulContext'
@@ -26,7 +25,7 @@ class AddNote extends React.Component {
         const folderId = e.target.folderId.value
         const content = e.target.content.value;
         const note = { name, folderId, content, 
-            modified: moment(new Date()).format('MMMM Do YYYY, h:mm:ss a'),
+            modified: new Date()
         }
 
         if(!name) {

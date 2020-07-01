@@ -12,6 +12,7 @@ class ListNote extends React.Component {
             if (this.props.match.params.noteId) {
                 return (note.id === this.props.match.params.noteId);
             }
+            return <></>
         }) || {}
         return (
             <li>
