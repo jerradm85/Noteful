@@ -14,7 +14,7 @@ class AddNote extends React.Component {
             this.setState({
                 message: <p className="noteError">Note must have a name.</p>
             })
-            return null;
+            return ;
         } 
         return name;
     }
@@ -29,10 +29,7 @@ class AddNote extends React.Component {
         }
 
         if(!name) {
-            this.setState({
-                message: ""
-            })
-            return
+            return;
         }
 
         fetch(`http://localhost:9090/notes`, {
@@ -62,22 +59,28 @@ class AddNote extends React.Component {
                         <form className="form" onSubmit={this.handleSubmit}>
                             <fieldset className="noteField">
                                 <legend>Create a new note</legend>
-                                <div className="name">
-                                    <label>Name: </label>
-                                    <input name="name" placeholder="Cats"></input>
+                                <section className="name">
+                                    <label htmlFor="name">Name: </label>
+                                    <input 
+                                    id="name" 
+                                    name="name" 
+                                    placeholder="Cats"
+                                    aria-label="name field"
+                                    aria-required="true"
+                                    />
                                     {this.state.message}
-                                </div>
-                                <div>
-                                    <label>Folder: </label>
-                                    <select className="sort" name="folderId">
+                                </section>
+                                <section className="folder">
+                                    <label htmlFor="folder">Folder: </label>
+                                    <select id="sort" className="sort" name="folderId">
                                         {context.folders.map((folder, idx) => (
                                             <option key={idx} value={folder.id}>{folder.name}</option>
                                         ))}
                                     </select>
-                                </div>
-                                <label>Text: </label>
-                                <textarea className="content" name="content" placeholder="lorem ipsum"></textarea>
-                                <button>Submit</button>
+                                </section>
+                                <label htmlFor="textarea"/>
+                                <textarea id="text" className="content" name="content" placeholder="lorem ipsum"></textarea>
+                                <button htmlFor="submit">Submit</button>
                             </fieldset>
                         </form>
                     )

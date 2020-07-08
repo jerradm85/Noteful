@@ -40,12 +40,12 @@ class ListNote extends React.Component {
             <NotefulContext.Consumer>
                 {(context) => {
                     return (
-                        <div className="listNote">
+                        <section className="listNote">
                             <ul>
                                 {this.findNote(context.notes)}
                             </ul>
                             <button className="noteDel" onClick={this.removeNote}>Delete</button>
-                        </div>
+                        </section>
                     )
                 }}
             </NotefulContext.Consumer>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './GoBack.css'
 import propTypes from 'prop-types'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import NotefulContext from '../NotefulContext'
 
 class GoBack extends React.Component {
@@ -23,13 +23,13 @@ class GoBack extends React.Component {
                 {context => {
                     const folder = this.findFolder(context)
                     return (
-                        <div className="goBack">
-                            <NavLink
+                        <section className="goBack">
+                            <Link
                                 to={`/folder/${folder.id}`}
                                 className="backButton">
                                 {`Back to ${folder.name} folder`}
-                            </NavLink>
-                        </div>
+                            </Link>
+                        </section>
                     )
                 }}
             </NotefulContext.Consumer>

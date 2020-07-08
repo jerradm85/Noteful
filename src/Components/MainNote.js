@@ -33,14 +33,14 @@ class MainNote extends React.Component {
                             return (note.folderId === this.props.match.params.folderId)
                         }else {return(true)}
                     }).map((note, idx) => (
-                        <div className="Note" key={idx}>
+                        <section className="Note" key={idx}>
                             <li>
                                 <Link to={`/note/${note.id}`}>{`${note.name}`}</Link>
                                 {' - '}
                                 {`Last Modified: ${moment(note.modified).format('MMMM Do YYYY, h:mm:ss a')}`}
                             </li>
                             <button className="delbutton" onClick={() => this.removeNote(note.id)}>Delete</button>
-                        </div>
+                        </section>
                     ))}
                 </ul>
                  ) }

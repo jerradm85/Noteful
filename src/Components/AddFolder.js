@@ -58,7 +58,7 @@ class AddFolder extends React.Component {
             <form className="addFolder" onSubmit={this.handleSubmit}>
                 <fieldset className="folderField">
                     <legend>Create a new Folder</legend>
-                    <label name="Folder"></label>
+                    <label htmlFor="folderName" name="Folder"></label>
                     <input className="folderName" name="Folder" placeholder="e.g. 'Favorites'"></input>
                     <p>{this.state.message}</p>
                     <button className="folderButton">Submit</button>

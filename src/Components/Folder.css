@@ -9,6 +9,7 @@
 }
 
 .Folder {
+    list-style-type: none;
     padding: 10px;
     border: 3px solid;
     border-color: #4d4d4d;

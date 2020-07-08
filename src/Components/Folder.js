@@ -10,9 +10,9 @@ function Folder() {
                 return (
                     <section className="Section">
                         {context.folders.map((folder, idx) => (
-                            <div className="Folder" key={idx}>
+                            <li className="Folder" key={idx}>
                                 <NavLink className="navLink" to={`/folder/${folder.id}`}>{folder.name}</NavLink>
-                            </div>
+                            </li>
                         ))}
                     </section>
                 )

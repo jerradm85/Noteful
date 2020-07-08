@@ -16,7 +16,10 @@ ul {
    margin-top: 10px;
    width: 75px;
    height: 30px;
-   border: 1px solid;
+   border: 1px #4d4d4d solid;
    text-align: center;
 }
 
+.delbutton:hover {
+   color: red;
+}
