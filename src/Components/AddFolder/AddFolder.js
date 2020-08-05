@@ -1,6 +1,6 @@
 import React from 'react';
 import './AddFolder.css'
-import NotefulContext from '../NotefulContext';
+import NotefulContext from '../../NotefulContext';
 
 class AddFolder extends React.Component {
     state = {
@@ -27,7 +27,7 @@ class AddFolder extends React.Component {
         const folder = { name }
         e.target.Folder.value = "";
 
-        fetch(`http://localhost:9090/folders`, {
+        fetch(`http://localhost:8000/folders`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"

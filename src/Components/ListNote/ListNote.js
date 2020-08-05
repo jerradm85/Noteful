@@ -2,7 +2,7 @@ import React from 'react'
 import './ListNote.css'
 import moment from 'moment';
 import propTypes from 'prop-types'
-import NotefulContext from '../NotefulContext'
+import NotefulContext from '../../NotefulContext'
 
 class ListNote extends React.Component {
     static contextType = NotefulContext;
@@ -10,7 +10,7 @@ class ListNote extends React.Component {
     findNote(notes) {
         const foundNote = notes.find((note) => {
             if (this.props.match.params.noteId) {
-                return (note.id === this.props.match.params.noteId);
+                return (note.id === parseInt(this.props.match.params.noteId));
             }
             return <></>
         }) || {}
@@ -26,7 +26,7 @@ class ListNote extends React.Component {
     removeNote = () => {
         const note = this.props.match.params.noteId;
 
-        fetch(`http://localhost:9090/notes/${note}`,{
+        fetch(`http://localhost:8000/notes/${note}`,{
             method:"DELETE"
         })
         .then(() => {

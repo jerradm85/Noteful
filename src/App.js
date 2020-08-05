@@ -2,12 +2,12 @@ import React from 'react';
 import './App.css'
 import { Route, Link } from 'react-router-dom'
 
-import MainNote from './Components/MainNote'
-import ListNote from './Components/ListNote'
-import Folder from './Components/Folder'
-import GoBack from './Components/GoBack'
-import AddNote from './Components/AddNote'
-import AddFolder from './Components/AddFolder'
+import MainNote from './Components/MainNote/MainNote'
+import ListNote from './Components/ListNote/ListNote'
+import Folder from './Components/Folder/Folder'
+import GoBack from './Components/GoBack/GoBack'
+import AddNote from './Components/AddNote/AddNote'
+import AddFolder from './Components/AddFolder/AddFolder'
 
 import NotefulContext from './NotefulContext'
 import FormError from './FormError'
@@ -32,12 +32,20 @@ class App extends React.Component {
 
   deleteNote = (id) => {
     this.setState({
-      notes: this.state.notes.filter(note => note.id !== id)
+      notes: this.state.notes.filter(note => note.id !== parseInt(id))
+    })
+  }
+
+  deleteFolder = (id) => {
+    
+    this.setState({
+      folders: this.state.folders.filter(folder => folder.id !== parseInt(id)),
+      notes: this.state.notes.filter(note => note.folder_id !== parseInt(id))
     })
   }
 
   componentDidMount() {
-    fetch(`http://localhost:9090/notes`)
+    fetch(`http://localhost:8000/notes`)
       .then(res => res.json())
       .then(notes => {
         this.setState({
@@ -45,7 +53,7 @@ class App extends React.Component {
         })
       })
 
-    fetch(`http://localhost:9090/folders`)
+    fetch(`http://localhost:8000/folders`)
       .then(res => res.json())
       .then(folders => {
         this.setState({
@@ -62,16 +70,17 @@ class App extends React.Component {
           folders: this.state.folders,
           setNotes: this.setNotes,
           deleteNote: this.deleteNote,
-          setFolders: this.setFolders
+          setFolders: this.setFolders,
+          deleteFolder: this.deleteFolder,
         }
       }>
-        <body className="grid-container">
+        <div className="grid-container">
           <header>
             <Link className="link" to='/'><h1>Noteful</h1></Link>
           </header>
           <nav>
             <Route exact path='/' component={Folder} />
-            <Route path='/folder/:folderId' component={Folder} />
+            <Route path='/folder/:folder_id' component={Folder} />
             <Route path='/note/:noteId' component={GoBack} />
             <FormError>
               <Route exact path='/' component={AddFolder} />
@@ -79,13 +88,13 @@ class App extends React.Component {
           </nav>
           <main>
             <Route exact path='/' component={MainNote} />
-            <Route path="/folder/:folderId" component={MainNote} />
+            <Route path="/folder/:folder_id" component={MainNote} />
             <FormError>
               <Route className="addNote" path='/addnote' component={AddNote} />
             </FormError>
             <Route path="/note/:noteId" component={ListNote} />
           </main>
-        </body>
+        </div>
       </NotefulContext.Provider>
     );
   }

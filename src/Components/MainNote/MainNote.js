@@ -3,7 +3,7 @@ import moment from 'moment';
 import './MainNote.css';
 import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import NotefulContext from '../NotefulContext'
+import NotefulContext from '../../NotefulContext'
 
 class MainNote extends React.Component {
     static contextType = NotefulContext;
@@ -13,12 +13,12 @@ class MainNote extends React.Component {
 
     removeNote = (note) => {
         const deathNote = note;
-        fetch(`http://localhost:9090/notes/${deathNote}`,{
+        fetch(`http://localhost:8000/notes/${deathNote}`,{
             method:"DELETE"
         })
         .then(() => {
-            this.props.history.push("/")
-            this.context.deleteNote(deathNote);
+            this.context.deleteNote(deathNote)
+            this.props.history.push("/");
         })
     }
 
@@ -29,8 +29,8 @@ class MainNote extends React.Component {
                     <ul>
                     <Link to='/addnote' className="addNote">Create new note</Link>
                     {context.notes.filter(note => {
-                        if(this.props.match.params.folderId) {
-                            return (note.folderId === this.props.match.params.folderId)
+                        if(this.props.match.params.folder_id) {
+                            return (note.folder_id === parseInt(this.props.match.params.folder_id))
                         }else {return(true)}
                     }).map((note, idx) => (
                         <section className="Note" key={idx}>

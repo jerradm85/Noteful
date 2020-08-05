@@ -1,7 +1,7 @@
 import React from 'react';
 import './AddNote.css'
 import propTypes from 'prop-types'
-import NotefulContext from '../NotefulContext'
+import NotefulContext from '../../NotefulContext'
 
 class AddNote extends React.Component {
     state = {
@@ -22,17 +22,19 @@ class AddNote extends React.Component {
     handleSubmit = e => {
         e.preventDefault()
         const name = this.validateName(e.target.name.value);
-        const folderId = e.target.folderId.value
+        const folder_id = e.target.folderId.value
         const content = e.target.content.value;
-        const note = { name, folderId, content, 
+        const note = { name, folder_id, content, 
             modified: new Date()
         }
+
+        console.log(note)
 
         if(!name) {
             return;
         }
 
-        fetch(`http://localhost:9090/notes`, {
+        fetch(`http://localhost:8000/notes`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"

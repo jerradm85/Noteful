@@ -2,7 +2,7 @@ import React from 'react';
 import './GoBack.css'
 import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import NotefulContext from '../NotefulContext'
+import NotefulContext from '../../NotefulContext'
 
 class GoBack extends React.Component {
 
