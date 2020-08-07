@@ -22,7 +22,7 @@ class AddNote extends React.Component {
     handleSubmit = e => {
         e.preventDefault()
         const name = this.validateName(e.target.name.value);
-        const folder_id = e.target.folderId.value
+        const folder_id = e.target.folderId.value;
         const content = e.target.content.value;
         const note = { name, folder_id, content, 
             modified: new Date()
