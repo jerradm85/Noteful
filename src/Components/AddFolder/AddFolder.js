@@ -1,6 +1,7 @@
 import React from 'react';
 import './AddFolder.css'
 import NotefulContext from '../../NotefulContext';
+import config from '../../config'
 
 class AddFolder extends React.Component {
     state = {
@@ -27,7 +28,7 @@ class AddFolder extends React.Component {
         const folder = { name }
         e.target.Folder.value = "";
 
-        fetch(`http://localhost:8000/folders`, {
+        fetch(`${config.API_ENDPOINT}/folders`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -46,7 +47,7 @@ class AddFolder extends React.Component {
                 this.context.setFolders(folder)
             }).catch( e => {
                 this.setState({
-                    message: e
+                    message: e.message
                 })
             })
 
@@ -54,6 +55,7 @@ class AddFolder extends React.Component {
 
 
     render() {
+        console.log(this.state.message)
         return (
             <form className="addFolder" onSubmit={this.handleSubmit}>
                 <fieldset className="folderField">

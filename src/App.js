@@ -11,6 +11,7 @@ import AddFolder from './Components/AddFolder/AddFolder'
 
 import NotefulContext from './NotefulContext'
 import FormError from './FormError'
+import config from './config'
 
 class App extends React.Component {
   state = {
@@ -45,7 +46,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:8000/notes`)
+    fetch(`${config.API_ENDPOINT}/notes`)
       .then(res => res.json())
       .then(notes => {
         this.setState({
@@ -53,7 +54,7 @@ class App extends React.Component {
         })
       })
 
-    fetch(`http://localhost:8000/folders`)
+    fetch(`${config.API_ENDPOINT}/folders`)
       .then(res => res.json())
       .then(folders => {
         this.setState({

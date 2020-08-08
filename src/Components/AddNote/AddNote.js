@@ -2,6 +2,7 @@ import React from 'react';
 import './AddNote.css'
 import propTypes from 'prop-types'
 import NotefulContext from '../../NotefulContext'
+import config from '../../config'
 
 class AddNote extends React.Component {
     state = {
@@ -28,13 +29,11 @@ class AddNote extends React.Component {
             modified: new Date()
         }
 
-        console.log(note)
-
         if(!name) {
             return;
         }
 
-        fetch(`http://localhost:8000/notes`, {
+        fetch(`${config.API_ENDPOINT}/notes`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -47,7 +46,6 @@ class AddNote extends React.Component {
                 } return res.json();
             })
             .then(notes => {
-                console.log(notes)
                 this.context.setNotes(notes)
                 this.props.history.push("/")
             })

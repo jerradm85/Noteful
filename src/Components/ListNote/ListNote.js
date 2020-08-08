@@ -3,6 +3,7 @@ import './ListNote.css'
 import moment from 'moment';
 import propTypes from 'prop-types'
 import NotefulContext from '../../NotefulContext'
+import config from '../../config'
 
 class ListNote extends React.Component {
     static contextType = NotefulContext;
@@ -26,7 +27,7 @@ class ListNote extends React.Component {
     removeNote = () => {
         const note = this.props.match.params.noteId;
 
-        fetch(`http://localhost:8000/notes/${note}`,{
+        fetch(`${config.API_ENDPOINT}/notes/${note}`,{
             method:"DELETE"
         })
         .then(() => {

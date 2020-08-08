@@ -4,6 +4,7 @@ import './MainNote.css';
 import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import NotefulContext from '../../NotefulContext'
+import config from '../../config'
 
 class MainNote extends React.Component {
     static contextType = NotefulContext;
@@ -12,12 +13,11 @@ class MainNote extends React.Component {
     }
 
     removeNote = (note) => {
-        const deathNote = note;
-        fetch(`http://localhost:8000/notes/${deathNote}`,{
+        fetch(`${config.API_ENDPOINT}/notes/${note}`,{
             method:"DELETE"
         })
         .then(() => {
-            this.context.deleteNote(deathNote)
+            this.context.deleteNote(note)
             this.props.history.push("/");
         })
     }

@@ -2,17 +2,17 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Folder.css'
 import NotefulContext from '../../NotefulContext';
+import config from '../../config'
 
 class Folder extends React.Component {
     static contextType = NotefulContext;
 
     removeFolder = (folder) => {
-        const delFolder = folder;
-        fetch(`http://localhost:8000/folders/${delFolder}`,{
+        fetch(`${config.API_ENDPOINT}/folders/${folder}`,{
             method:"DELETE"
         })
         .then(() => {
-            this.context.deleteFolder(delFolder);
+            this.context.deleteFolder(folder);
             this.props.history.push("/");
         })
     }
