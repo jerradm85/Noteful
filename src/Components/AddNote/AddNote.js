@@ -24,6 +24,7 @@ class AddNote extends React.Component {
         e.preventDefault()
         const name = this.validateName(e.target.name.value);
         const folder_id = e.target.folderId.value;
+        console.log(folder_id)
         const content = e.target.content.value;
         const note = { name, folder_id, content, 
             modified: new Date()

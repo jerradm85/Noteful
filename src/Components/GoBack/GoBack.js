@@ -7,13 +7,9 @@ import NotefulContext from '../../NotefulContext'
 class GoBack extends React.Component {
 
     findFolder(context) {
-        const note = context.notes.find(note => note.id === this.props.match.params.noteId) || {}
-        const folder = context.folders.find(fldr => {
-            if (fldr.id === note.folderId) {
-                return true
-            }
-            return <></>
-        }) || {}
+        const note = context.notes.find(note => parseInt(note.id) === parseInt(this.props.match.params.noteId)) || {}
+        const folder = context.folders.find(fldr => fldr.id === note.folder_id) || {}
+
         return folder
     }
 
@@ -27,7 +23,7 @@ class GoBack extends React.Component {
                             <Link
                                 to={`/folder/${folder.id}`}
                                 className="backButton">
-                                {`Back to ${folder.name} folder`}
+                                {`Back to ${folder.name}`}
                             </Link>
                         </section>
                     )
